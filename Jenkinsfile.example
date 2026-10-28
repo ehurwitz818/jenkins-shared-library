@@ -1,0 +1,27 @@
+// Tasks 17-19 in one test pipeline (paste into a Pipeline job's script box)
+@Library('myLibrary') _
+
+pipeline {
+    agent any
+    stages {
+        stage('Test Shared Library') {          // Task 17
+            steps {
+                helloWorld('Jenkins Students')
+            }
+        }
+        stage('Use Advanced Function') {        // Task 18
+            steps {
+                printMessage('Hello from Advanced Shared Library!')
+                printMessage('Printed three times', 3)
+            }
+        }
+        stage('Read Config') {                  // Task 19
+            steps {
+                script {
+                    def config = loadConfig()
+                    printMessage(config.message, config.repeat)
+                }
+            }
+        }
+    }
+}
